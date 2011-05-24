@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<%= render :partial => "/shared/html_tag" %>
+  <% site_bar = render(:partial => "/shared/site_bar", :locals => {:head => true}) -%>
+  <%= render :partial => "/shared/head", :locals => {:theme => true} %>
+  <body>
+    <%= site_bar -%>
+    <%= render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
+    <div id="page_container" class="container">
+      <header class="span-22 prepend-1 append-1 last" id="page_header">
+        <%= render :partial => "/shared/header" -%>
+      </header>
+      <section class='page span-24 last'>
+        <%= yield %>
+      </section>
+      <footer class='span-22 prepend-1 append-1 last' id="page_footer">
+        <%= render :partial => "/shared/footer" -%>
+      </footer>
+    </div>
+    <%= render :partial => "/shared/javascripts" %>
+    <%= javascript_include_tag 'jquery', 'rails' %>
+    <%= javascript_include_tag 'application', :theme => true %>
+  </body>
+</html>

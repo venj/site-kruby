@@ -1,0 +1,124 @@
+/*
+    Override default refinery application CSS below.
+    Formatting applies to all frontend.
+*/
+
+/* default fonts, center content */
+*,html,body {
+    font-size:14px;
+    font-family:"Lucida Grande" Verdana Arial sans-serif;
+}
+body {
+    margin:0px, auto;
+    background:#303030 url('/images/refinery/page_bg.png') repeat;
+}
+.container {
+    border-bottom-left-radius:5px 5px;
+    border-bottom-right-radius:5px 5px;
+    margin-bottom:2em;
+    background-color:white;
+}
+h1 {
+    margin: 0.3em 0;
+}
+h2 {
+    margin: 0.2em 0;
+}
+p {
+    margin:0em;
+    line-height:2em;
+}
+/* Get rid of underline for links */
+a, a:link, a:visited {
+    text-decoration:none;
+}
+a:hover a:active {
+    text-decoration:underline;
+}
+/* Override styles in application.css */
+#page, #site_bar_content, footer, header {
+    width:auto;
+}
+/* Custom menu style */
+li.first {
+    margin:0px;
+}
+#menu {
+    border-top: 1px dashed silver;
+    border-bottom: 1px dashed silver;
+}
+#menu ul li {
+    margin:2px 4px;
+}
+#menu ul li a {
+    padding:4px;
+}
+#menu ul li a:hover, #menu ul li a:active {
+    background-color:silver;
+    border-top-left-radius:2px 2px;
+    border-top-right-radius:2px 2px;
+    border-bottom-left-radius:2px 2px;
+    border-bottom-right-radius:2px 2px;
+}
+
+/* Custom blog list page */
+.blog_post {
+    border-bottom: 1px dashed silver;
+}
+.blog_post:last-child {
+    border-bottom:none;
+}
+.blog_post h1, #blog_post h1, h1#body_content_title {
+    font-size:2em;
+}
+.blog_post .posted_at, #blog_post .posted_at {
+    display:inline !important; /* use !important to override blog specific style */
+}
+.blog_post .filed_in, #blog_post .filed_in {
+    display:inline !important;
+}
+.blog_post details, .blog_post details time, #blog_post details, #blog_post details time, .comment_meta {
+    color:gray;
+    font-size: 0.8em;
+}
+.blog_post, #blog_post {
+    padding-bottom:0.3em;
+}
+.page {
+    border-bottom: 1px dashed silver;
+}
+.comment_form {
+    padding-top:1em;
+    padding-bottom:1em;
+}
+.comment_form h2, #comments h2 {
+    font-size:1.4em;
+}
+.comment_form .field_name {
+    padding:0.55em 0;
+}
+.gravatar img {
+    padding:0 16px;
+}
+.blog_comment_message {
+    padding-top:0.4em;
+}
+.comment_box {
+    height:6em;
+}
+/* Custom Page Footer */
+#page_footer {
+    height: 3em;
+    padding-top:0.5em;
+    line-height:2em;
+    color:gray;
+    text-align:center;
+}
+/* Custom page header */
+#page_title_link {
+    display:block;
+    padding-left:100px;
+    padding-top:30px;
+    height:70px;
+    background:url(/images/k-ruby/logo.png) left bottom no-repeat;
+}

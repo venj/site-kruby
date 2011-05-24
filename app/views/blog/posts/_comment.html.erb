@@ -1,0 +1,12 @@
+<article class='blog_comment_message span-12 last' id='<%= "comment-#{comment.to_param}" %>'>
+  <div class="span-10">
+    <strong><%= comment.name %></strong>
+    <span class="comment_meta">
+       <%= t('blog.posts.comments.time_ago', :time => time_ago_in_words(comment.created_at)) %>
+    </span>: 
+    <%= simple_format auto_link(comment.message.to_s) %>
+  </div>
+  <div class="gravatar span-2 last">
+    <img src="<%= gravatar(comment.email) -%>" alt="Gravatar">
+  </div>
+</article>

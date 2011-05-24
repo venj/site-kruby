@@ -1,0 +1,66 @@
+<section class="span-16 prepend-1 colborder">
+  <div id="show_blog_post">
+    <%= render 'post' %>
+  </div>
+
+  <% if BlogPost.comments_allowed? %>
+    <aside id="comments">
+      <h2><%= t('.comments.title') %></h2>
+      <% if (comments = @blog_post.comments.approved).any? %>
+        <%= render :partial => "comment", :collection => comments %>
+      <% else %>
+        <p>
+          <%= t('blog.shared.comments.none') %>.
+        </p>
+      <% end %>
+
+      <% flash.each do |key, value| %>
+        <div id='flash' class="flash flash_<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+      
+      <div class="comment_form span-16 last">
+        <h2><%= t('.comments.add') %></h2>
+        <%= form_for [:blog_post, @blog_comment] do |f| %>
+          <%= render :partial => "/shared/admin/error_messages",
+                     :locals => {
+                       :object => f.object,
+                       :include_object_name => true
+                     } %>
+          <div class='field span-12 append-4 last'>
+            <div class="span-2 field_name"><%= f.label :name %></div>
+            <div class="span-5 append-5 last"><%= f.text_field :name %></div>
+          </div>
+          <div class='field span-12 append-4 last'>
+            <div class="span-2 field_name"><%= f.label :email %></div>
+            <div class="span-5 append-5 last"><%= f.email_field :email %></div>
+          </div>
+          <div class='field message_field span-16 last'>
+            <div class="span-2 field_name"><%= f.label :message %></div>
+            <div class="span-9 append-5 last"><%= f.text_area :message, :rows => 3, :class => "comment_box span-8 append-1 last" %></div>
+          </div>
+          <div class='field form-actions span-2 prepend-2 append-8 last'>
+            <%= f.submit t('.submit') %>
+          </div>
+        <% end %>
+      </div>
+    </aside>
+  <% end %>
+</section>
+
+<section class='span-5 append-1 last'>
+  <%= render :partial => "/blog/shared/categories" %>
+  <%= render :partial => "/blog/shared/posts" %>
+  <%= render :partial => "/blog/shared/rss_feed" %>
+  <%= blog_archive_list %>
+</section>
+
+<% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
+<% content_for :before_javascript_libraries, jquery_include_tags(:jquery_ui => false) %>
+<% content_for :javascripts do %>
+<%# enable AJAX'd post nav at your own risk until html5 history API implemented. %>
+<%#= javascript_include_tag('refinerycms-blog') %>
+<script src="http://w.sharethis.com/button/buttons.js"></script>
+<script>stLight.options({publisher:'<%= BlogPost::ShareThis.key %>'});</script>
+<% end %>

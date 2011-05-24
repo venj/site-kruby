@@ -1,0 +1,21 @@
+<section class="span-16 prepend-1 colborder">
+  <%=raw @page[Page.default_parts.first.to_sym] if Page.default_parts.any? %>
+  
+  <% if @blog_posts.any? %>
+  <section id="blog_posts">
+    <%= render :partial => "/blog/shared/post", :collection => @blog_posts %>
+    <%= will_paginate @blog_posts %>
+  </section>
+  <% else %>
+  <p><%= t('.no_blog_articles_yet') %></p>
+  <% end %>
+</section>
+<section class='span-5 append-1 last'>
+  <%=raw @page[Page.default_parts.second.to_sym] if Page.default_parts.many? %>
+  
+  <%= render :partial => "/blog/shared/categories" %>
+  <%= render :partial => "/blog/shared/rss_feed" %>
+  <%= blog_archive_list %>
+</section>
+
+<% content_for :stylesheets, stylesheet_link_tag('refinerycms-blog') %>
